@@ -1,5 +1,5 @@
 # Pagina de prueba de texturas seamless
-Esta pagina fue hecha en HTML y usando a GPT-3.5 como copiloto para ayudar a facilitar el proceso de creacion.
+Esta pagina fue hecha en HTML y usando a GPT-3.5 como copiloto para facilitar el proceso de creacion.
 
 # Objetivo
 previsualizar texturas (imagenes) concatenadas con el fin de confirmar si estas cumplen con el requisito de ser seamless, en este caso se utiliza como herramienta para la creacion de texturas para Minecraft.
