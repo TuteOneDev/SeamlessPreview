@@ -1,0 +1,127 @@
+<!-- Creado por TuteOne y GPT-3.5 El 18 de Julio del 2023 -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>seamless TEST</title>
+  <style>
+    body {
+      background-repeat: repeat;
+      background-size: contain;
+      background-position: center;
+      image-rendering: pixelated;
+    }
+    #backgroundImage {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+      margin-right: 10px;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    #imageInput {
+      display: none;
+    }
+    .file-input-label {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f44336;
+      color: white;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .file-input-label:hover {
+      background-color: #d32f2f;
+    }
+    #selectedTexture {
+      font-weight: bold;
+      color: white;
+      background-color: black;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    #header {
+      background-color: black;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .slider-container {
+      display: block;
+      align-items: center;
+      margin-left: 10px;
+      color: white;
+      background: black;
+      opacity: 0.2;
+      transition: opacity 0.5s;
+    }
+    .slider-container:hover {
+      opacity: 1;
+    }
+    .slider-label {
+      display: flex;
+      padding: 5px;
+    }
+    .slider-input {
+      width: 200px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body onload="showInstructions()">
+  <div id="header">
+    <label for="imageInput" class="file-input-label">Seleccionar Imagen</label>
+    <input type="file" id="imageInput" accept="image/*">
+    <button onclick="loadBackgroundImage()" class="button">Cargar Imagen</button>
+  </div>
+  <div id="selectedTexture"></div>
+  <div class="slider-container">
+    <label for="imageSizeSlider" class="slider-label">Zoom: <span id="zoomPercentage">0%</span></label>
+    <input type="range" id="imageSizeSlider" class="slider-input" min="5" max="15" step="0.1" value="5" oninput="updateImageSize()">
+  </div>
+  <script>
+    function showInstructions() {
+      var instructions = "Selecciona la textura deseada con el boton 'Seleccionar Imagen' y haz clic en 'Cargar Imagen' para aplicarla como fondo. Puedes utilizar el slider para ajustar el zoom de la imagen.";
+      document.getElementById('selectedTexture').innerText = instructions;
+    }
+    function loadBackgroundImage() {
+      var input = document.getElementById('imageInput');
+      var file = input.files[0];
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        document.body.style.backgroundImage = "url(" + reader.result + ")";
+        document.getElementById('selectedTexture').innerText = "Textura seleccionada: " + file.name;
+        updateImageSize();
+      }
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+    function updateImageSize() {
+      var slider = document.getElementById('imageSizeSlider');
+      var value = slider.value;
+      var percentage = (value - slider.min) / (slider.max - slider.min) * 100;
+      if (value == slider.min) {
+        percentage = 1;
+      }
+      document.body.style.backgroundSize = percentage + "%";
+      document.getElementById('zoomPercentage').innerText = Math.round(percentage) + "%";
+    }
+  </script>
+</body>
+</html>
+<!-- Creado por TuteOne y GPT-3.5 El 18 de Julio del 2023 -->
